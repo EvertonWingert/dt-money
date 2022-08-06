@@ -1,13 +1,8 @@
 import supertest from 'supertest';
-import {
-  TransactionEntity,
-  TransactionType,
-} from '../../../../src/core/entity/transaction-entity';
 import app from '../../../../src/index';
 
 describe('Transaction Routes', () => {
   const request = supertest(app);
-  let transactions: TransactionEntity[] = [];
 
   describe('GET /v1/api/transactions', () => {
     test('should return all transactions', async () => {
