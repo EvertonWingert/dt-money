@@ -6,4 +6,11 @@ export type CreateTransactionInputDto = {
   description: string;
   category: string;
 };
-export type CreateTransactionOutputDto = TransactionEntity;
+export type CreateTransactionOutputDto = {
+  amount: number;
+  type: string;
+  description: string;
+  category: string;
+  id: string;
+  created_at: Date;
+};

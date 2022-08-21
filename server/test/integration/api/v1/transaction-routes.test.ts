@@ -4,32 +4,32 @@ import app from '../../../../src/index';
 describe('Transaction Routes', () => {
   const request = supertest(app);
 
-  describe('GET /v1/api/transactions', () => {
+  describe('GET /api/v1/transactions', () => {
     test('should return all transactions', async () => {
-      const response = await request.get('/v1/api/transactions');
+      const response = await request.get('/api/v1/transactions');
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('transactions');
     });
   });
 
-  describe('GET /v1/api/transactions/:id', () => {
+  describe('GET /api/v1/transactions/:id', () => {
     test('should return a specific transaction', async () => {
-      const response = await request.get(`/v1/api/transactions/1`);
+      const response = await request.get(`/api/v1/transactions/1`);
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('transaction');
     });
     test('should return 404 if transaction does not exist', async () => {
-      const response = await request.get('/v1/api/transactions/101');
+      const response = await request.get('/api/v1/transactions/101');
 
       expect(response.status).toBe(404);
     });
   });
 
-  describe('POST /v1/api/transactions', () => {
+  describe('POST /api/v1/transactions', () => {
     test('should create a transaction', async () => {
-      const response = await request.post('/v1/api/transactions').send({
+      const response = await request.post('/api/v1/transactions').send({
         amount: 100,
         type: 'income',
         description: 'Salary',
@@ -45,7 +45,7 @@ describe('Transaction Routes', () => {
     });
 
     test('should return 422 if amount is not an integer', async () => {
-      const response = await request.post('/v1/api/transactions').send({
+      const response = await request.post('/api/v1/transactions').send({
         amount: '100',
         type: 'income',
         description: 'Salary',
@@ -57,7 +57,7 @@ describe('Transaction Routes', () => {
     });
 
     test('should return 422 if type is not income or expense', async () => {
-      const response = await request.post('/v1/api/transactions').send({
+      const response = await request.post('/api/v1/transactions').send({
         amount: 100,
         type: 'outcome',
         description: 'Salary',
@@ -68,7 +68,7 @@ describe('Transaction Routes', () => {
     });
 
     test('should return 422 if description is not a string', async () => {
-      const response = await request.post('/v1/api/transactions').send({
+      const response = await request.post('/api/v1/transactions').send({
         amount: 100,
         type: 'income',
         description: 100,
@@ -79,7 +79,7 @@ describe('Transaction Routes', () => {
     });
 
     test('should return 422 if category is not a string', async () => {
-      const response = await request.post('/v1/api/transactions').send({
+      const response = await request.post('/api/v1/transactions').send({
         amount: 100,
         type: 'income',
         description: 'Salary',
@@ -90,7 +90,7 @@ describe('Transaction Routes', () => {
     });
 
     test('should return 422 if any field is missing', async () => {
-      const response = await request.post('/v1/api/transactions').send({
+      const response = await request.post('/api/v1/transactions').send({
         amount: 100,
         type: 'income',
         description: 'Salary',
@@ -100,9 +100,9 @@ describe('Transaction Routes', () => {
     });
   });
 
-  describe('PUT /v1/api/transactions/:id', () => {
+  describe('PUT /api/v1/transactions/:id', () => {
     test('should return 404 if transaction does not exist', async () => {
-      const response = await request.put('/v1/api/transactions/2').send({
+      const response = await request.put('/api/v1/transactions/2').send({
         amount: 200,
         type: 'income',
         description: 'Salary',
@@ -112,7 +112,7 @@ describe('Transaction Routes', () => {
     });
 
     test('should update a specific transaction', async () => {
-      const response = await request.put('/v1/api/transactions/1').send({
+      const response = await request.put('/api/v1/transactions/1').send({
         amount: 200,
         type: 'income',
         description: 'Salary',
@@ -125,14 +125,14 @@ describe('Transaction Routes', () => {
     });
   });
 
-  describe('DELETE /v1/api/transactions/:id', () => {
+  describe('DELETE /api/v1/transactions/:id', () => {
     test('should return 404 if transaction does not exist', async () => {
-      const response = await request.delete('/v1/api/transactions/2');
+      const response = await request.delete('/api/v1/transactions/2');
       expect(response.status).toBe(404);
     });
 
     test('should delete a specific transaction', async () => {
-      const response = await request.delete('/v1/api/transactions/1');
+      const response = await request.delete('/api/v1/transactions/1');
       expect(response.status).toBe(204);
     });
   });

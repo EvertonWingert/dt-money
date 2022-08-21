@@ -9,14 +9,14 @@ export class TransactionRepositoryInMemory implements ITransactionRepository {
 
   constructor() {
     this.transactions = [
-      new TransactionEntity(
-        '1',
-        100,
-        TransactionType.EXPENSE,
-        'Aluguel',
-        'Casa',
-        new Date(),
-      ),
+      new TransactionEntity({
+        amount: 100,
+        type: TransactionType.INCOME,
+        description: 'Salary',
+        category: 'Salary',
+        id: '1',
+        createdAt: new Date(),
+      }),
     ];
   }
 
@@ -26,14 +26,14 @@ export class TransactionRepositoryInMemory implements ITransactionRepository {
     description: string,
     category: string,
   ): Promise<TransactionEntity> {
-    const newTransaction = new TransactionEntity(
-      String(this.transactions.length + 1),
+    const newTransaction = new TransactionEntity({
       amount,
-      type as TransactionType,
+      type: type as TransactionType,
       description,
       category,
-      new Date(),
-    );
+      id: String(this.transactions.length + 1),
+      createdAt: new Date(),
+    });
 
     this.transactions.push(newTransaction);
 

@@ -3,6 +3,7 @@ import {
   CreateTransactionInputDto,
   CreateTransactionOutputDto,
 } from './create-transaction.dto';
+import { CreateTransactionMapper } from './create-transaction.mapper';
 
 export class CreateTransactionUseCase {
   constructor(private transactionRepository: ITransactionRepository) {}
@@ -10,11 +11,13 @@ export class CreateTransactionUseCase {
   async execute(
     input: CreateTransactionInputDto,
   ): Promise<CreateTransactionOutputDto> {
-    return this.transactionRepository.create(
+    const transaction = await this.transactionRepository.create(
       input.amount,
       input.type,
       input.description,
       input.category,
     );
+
+    return CreateTransactionMapper.toMap(transaction);
   }
 }
