@@ -1,8 +1,8 @@
 import {
   TransactionEntity,
   TransactionType,
-} from '../../../core/entity/transaction-entity';
-import { ITransactionRepository } from '../../../core/repository/transaction-repository';
+} from '../../../core/entity/transaction.entity';
+import { ITransactionRepository } from '../../../core/repository/transaction.repository';
 
 export class TransactionRepositoryInMemory implements ITransactionRepository {
   transactions = <TransactionEntity[]>[];

@@ -1,6 +1,6 @@
 import express from 'express';
-import { errorMiddleware } from './presentation/middlewares/error-middleware';
-import transactionRoutes from './presentation/routes/transaction-routes';
+import { errorMiddleware } from './presentation/middlewares/error.middleware';
+import transactionRoutes from './presentation/routes/transaction.routes';
 
 const app = express();
 

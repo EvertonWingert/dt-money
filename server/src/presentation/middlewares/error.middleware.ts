@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { NotFoundError } from '../../core/errors/not-found-error';
+import { NotFoundError } from '../../core/errors/not-found.error';
 
 export function errorMiddleware(
   error: Error,

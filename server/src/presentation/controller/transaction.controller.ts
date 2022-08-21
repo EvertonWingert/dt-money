@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import { TransactionRepositoryInMemory } from '../../infra/repository/in-memory/transaction-repository';
-import { ListTransactionUseCase } from '../../core/usecase/transaction/list/list-transaction-usecase';
-import { FindTransactionUseCase } from '../../core/usecase/transaction/show/show-transaction-usecase';
-import { CreateTransactionUseCase } from '../../core/usecase/transaction/create/create-transaction-usecase';
-import { DeleteTransactionUseCase } from '../../core/usecase/transaction/delete/delete-transaction-usecase';
-import { UpdateTransactionUseCase } from '../../core/usecase/transaction/update/update-transaction-usecase';
+import { TransactionRepositoryInMemory } from '../../infra/repository/in-memory/transaction.repository';
+import { ListTransactionUseCase } from '../../core/usecase/transaction/list/list-transaction.usecase';
+import { FindTransactionUseCase } from '../../core/usecase/transaction/show/show-transaction.usecase';
+import { CreateTransactionUseCase } from '../../core/usecase/transaction/create/create-transaction.usecase';
+import { DeleteTransactionUseCase } from '../../core/usecase/transaction/delete/delete-transaction.usecase';
+import { UpdateTransactionUseCase } from '../../core/usecase/transaction/update/update-transaction.usecase';
 
 export class TransactionController {
   async index(req: Request, res: Response, next: NextFunction) {
