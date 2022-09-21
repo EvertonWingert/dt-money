@@ -7,11 +7,11 @@ import {
 } from './update-transaction.dto';
 
 export class UpdateTransactionUseCase {
-  constructor(private transactionRepository: ITransactionRepository) {}
+  constructor(private transactionRepository: ITransactionRepository) { }
 
   async execute(
     input: UpdateTransactionInputDto,
-  ): Promise<UpdateTransactionOutputDto> {
+  ): Promise<void> {
     const transaction = await this.transactionRepository.findById(input.id);
     if (!transaction) {
       throw new NotFoundError('Transaction not found');

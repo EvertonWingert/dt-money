@@ -1,16 +1,11 @@
 import { TransactionEntity } from '../entity/transaction.entity';
 
 export interface ITransactionRepository {
-  create(
-    amount: number,
-    type: string,
-    description: string,
-    category: string,
-  ): Promise<TransactionEntity>;
+  create(transaction: TransactionEntity): Promise<void>;
   update(
     id: string,
     transaction: TransactionEntity,
-  ): Promise<TransactionEntity>;
+  ): Promise<void>;
   findAll(): Promise<TransactionEntity[]>;
   findById(id: string): Promise<TransactionEntity | undefined>;
   delete(id: string): Promise<void>;

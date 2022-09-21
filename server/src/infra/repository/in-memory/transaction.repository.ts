@@ -14,42 +14,29 @@ export class TransactionRepositoryInMemory implements ITransactionRepository {
         type: TransactionType.INCOME,
         description: 'Salary',
         category: 'Salary',
-        id: '1',
         createdAt: new Date(),
+        id: '36b8f84d-df4e-4d49-b662-bcde71a8764f'
       }),
     ];
   }
 
   async create(
-    amount: number,
-    type: string,
-    description: string,
-    category: string,
-  ): Promise<TransactionEntity> {
-    const newTransaction = new TransactionEntity({
-      amount,
-      type: type as TransactionType,
-      description,
-      category,
-      id: String(this.transactions.length + 1),
-      createdAt: new Date(),
-    });
-
-    this.transactions.push(newTransaction);
-
-    return Promise.resolve(newTransaction);
+    transaction: TransactionEntity
+  ): Promise<void> {
+    this.transactions.push(transaction);
+    return Promise.resolve();
   }
   async update(
     id: string,
     transaction: TransactionEntity,
-  ): Promise<TransactionEntity> {
+  ): Promise<void> {
     const index = this.transactions.findIndex(
       transaction => transaction.id === id,
     );
 
     this.transactions[index] = transaction;
 
-    return Promise.resolve(transaction);
+    return Promise.resolve();
   }
   async delete(id: string): Promise<void> {
     this.transactions = this.transactions.filter(

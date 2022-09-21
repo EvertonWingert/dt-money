@@ -1,3 +1,4 @@
+import { TransactionEntity, TransactionType } from '../../../entity/transaction.entity';
 import { ITransactionRepository } from '../../../repository/transaction.repository';
 import {
   CreateTransactionInputDto,
@@ -6,18 +7,20 @@ import {
 import { CreateTransactionMapper } from './create-transaction.mapper';
 
 export class CreateTransactionUseCase {
-  constructor(private transactionRepository: ITransactionRepository) {}
+  constructor(private transactionRepository: ITransactionRepository) { }
 
   async execute(
     input: CreateTransactionInputDto,
   ): Promise<CreateTransactionOutputDto> {
-    const transaction = await this.transactionRepository.create(
-      input.amount,
-      input.type,
-      input.description,
-      input.category,
-    );
 
+    const transaction = new TransactionEntity({
+      amount: input.amount,
+      type: input.type as TransactionType,
+      description: input.description,
+      category: input.category,
+    })
+
+    await this.transactionRepository.create(transaction)
     return CreateTransactionMapper.toMap(transaction);
   }
 }
